@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Ajax</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <button onclick="insertGroupToServer()">Insert</button>
+    <button onclick="updateGroupToServer()">Update</button>
+    <button onclick="deleteGroupToServer()">Delete</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Group Name</th>
+                <th>Member</th>
+                <th>Creator</th>
+                <th>Created Date</th>
+            </tr>
+        </thead>
+        <tbody id="group-table-body">
+            <!-- <tr>
+                <td>Java Fresher</td>
+                <td>3</td>
+                <td>Nguyễn Ngọc Duy</td>
+                <td>June 21, 1961</td>
+            </tr>
+            <tr>
+                <td>PHP Fresher</td>
+                <td>9</td>
+                <td>Nguyễn Thị Giang</td>
+                <td>May 15, 1948</td>
+            </tr>
+            <tr>
+                <td>C# Fresher</td>
+                <td>8</td>
+                <td>Vũ Đình Hào</td>
+                <td>September 14, 1965</td>
+            </tr>
+            <tr>
+                <td>.NET Fresher</td>
+                <td>10</td>
+                <td>Vũ Đình Hào</td>
+                <td>April 2, 1971</td>
+            </tr> -->
+        </tbody>
+    </table>
+
+    <script>
+        $(function () {
+            getGroupsDataForTable();
+        });
+
+        function getGroupsDataForTable() {
+            $.ajax({
+                url: 'http://localhost:3000/api/v1/groups?_page=1&_limit=5&_sort=id&_order=desc',
+                type: 'GET',
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (data, textStatus, response) {
+                    // success
+                    console.log(data);
+                    console.log("total items: " + response.getResponseHeader('x-total-count'));
+                    fillListGroupToTable(data);
+                },
+                error(jqXHR, textStatus, errorThrown) {
+                    // error
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function fillListGroupToTable(groups) {
+            let rows = "";
+
+            for (const group of groups) {
+                let row = `<tr>
+                                <td>${group.name}</td>
+                                <td>${group.member}</td>
+                                <td>${group.creator}</td>
+                                <td>${group.createdDate}</td>
+                           </tr>`;
+                rows += row;
+            }
+            $('#group-table-body').empty();
+            $('#group-table-body').append(rows);
+        }
+
+        function insertGroupToServer() {
+            let newGroup = {
+                "name": "new name",
+                "member": 10,
+                "creator": "Nguyễn Ngọc Duy",
+                "createdDate": "2019-10-01"
+            };
+
+            $.ajax({
+                url: 'http://localhost:3000/api/v1/groups',
+                type: 'POST',
+                data: JSON.stringify(newGroup), // body
+                contentType: "application/json",
+                success: function (data, textStatus, response) {
+                    // success
+                    window.alert("Successfully! New group created!");
+                    getGroupsDataForTable(); // reload table
+                },
+                error(jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function updateGroupToServer() {
+            let newGroup = {
+                "name": "new name 1 2 3",
+                "member": 10,
+                "creator": "Nguyễn Ngọc Duy",
+                "createdDate": "2019-10-01"
+            };
+
+            $.ajax({
+                url: 'http://localhost:3000/api/v1/groups/25',
+                type: 'PUT',
+                data: JSON.stringify(newGroup), // body
+                contentType: "application/json",
+                success: function (data, textStatus, response) {
+                    // success
+                    window.alert("Successfully! New group updated!");
+                    getGroupsDataForTable(); // reload table
+                },
+                error(jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function deleteGroupToServer() {
+            $.ajax({
+                url: 'http://localhost:3000/api/v1/groups/25',
+                type: 'DELETE',
+                contentType: "application/json",
+                success: function (data, textStatus, response) {
+                    // success
+                    window.alert("Successfully! The group has been deleted!");
+                    getGroupsDataForTable(); // reload table
+                },
+                error(jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+    </script>
+
+</body>
+
+</html>
