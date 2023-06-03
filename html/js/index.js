@@ -5,7 +5,6 @@ $(function () {
     $("#left-menu").load("left-menu.html", function(){
         feather.replace();
     }); 
-
     $("#footer").load("footer.html", function(){
         feather.replace();
     });
@@ -15,10 +14,10 @@ function settingCommon() {
     
     $('[data-toggle="tooltip"]').tooltip();
     $('#min-date').datetimepicker({
-        format: 'L'
+        format: 'YYYY/MM/DD'
     });
     $('#max-date').datetimepicker({
-        format: 'L'
+        format: 'YYYY/MM/DD'
     });
 };
 let isShow = false;
