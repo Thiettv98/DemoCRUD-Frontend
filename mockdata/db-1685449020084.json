@@ -1,0 +1,200 @@
+{
+  "groups": [
+    {
+      "id": 1,
+      "name": "Java Fresher",
+      "member": 1,
+      "creator": "Nguyễn Ngọc Duy",
+      "createdDate": "2019-10-01"
+    },
+    {
+      "id": 2,
+      "name": "PHP Fresher",
+      "member": 3,
+      "creator": "Nguyễn Thị Giang",
+      "createdDate": "2020-11-02"
+    },
+    {
+      "id": 3,
+      "name": "C# Fresher",
+      "member": 5,
+      "creator": "Vũ Đình Hào",
+      "createdDate": "2016-04-09"
+    },
+    {
+      "id": 4,
+      "name": ".NET Fresher",
+      "member": 7,
+      "creator": "Trần Phú Dao",
+      "createdDate": "2017-05-09"
+    },
+    {
+      "id": 5,
+      "name": "Marketing",
+      "member": 8,
+      "creator": "Nguyễn Ngọc Duy",
+      "createdDate": "2015-11-09"
+    },
+    {
+      "id": 6,
+      "name": "Sale",
+      "member": 15,
+      "creator": "Nguyễn Ngọc Duy",
+      "createdDate": "2020-11-11"
+    },
+    {
+      "id": 7,
+      "name": "Sercurity",
+      "member": 17,
+      "creator": "Nguyễn Ngọc Duy",
+      "createdDate": "2023-01-22"
+    },
+    {
+      "id": 8,
+      "name": "Technical",
+      "member": 20,
+      "creator": "Vũ Đình Hào",
+      "createdDate": "2015-05-21"
+    },
+    {
+      "id": 9,
+      "name": "Accounting",
+      "member": 23,
+      "creator": "Nguyễn Thị Mỹ Nhung",
+      "createdDate": "2023-02-17"
+    },
+    {
+      "id": 10,
+      "name": "Director",
+      "member": 25,
+      "creator": "Tống Thị Nhung",
+      "createdDate": "2022-07-07"
+    },
+    {
+      "id": 11,
+      "name": "Audit",
+      "member": 4,
+      "creator": "Mai Chiến Thắng",
+      "createdDate": "2021-04-12"
+    },
+    {
+      "id": 12,
+      "name": "Purchasing",
+      "member": 3,
+      "creator": "Đinh Thu Thảo",
+      "createdDate": "2022-06-25"
+    },
+    {
+      "id": 2,
+      "name": "Training",
+      "member": 3,
+      "creator": "Nguyễn Thị Linh",
+      "createdDate": "2023-02-17"
+    },
+    {
+      "id": 14,
+      "name": "Administration",
+      "member": 0,
+      "creator": "Trần Văn Đạt",
+      "createdDate": "2023-02-17"
+    },
+    {
+      "id": 15,
+      "name": "HR",
+      "member": 0,
+      "creator": "Trần Văn Đạt",
+      "createdDate": "2023-02-19"
+    },
+    {
+      "id": 16,
+      "name": "Customer Service",
+      "member": 10,
+      "creator": "Nguyễn Xuân Tùng",
+      "createdDate": "2023-02-20"
+    },
+    {
+      "id": 17,
+      "name": "Vice director",
+      "member": 8,
+      "creator": "Văn Thị Linh",
+      "createdDate": "2023-02-25"
+    },
+    {
+      "id": 18,
+      "name": "IT",
+      "member": 7,
+      "creator": "Trịnh Thị Thu Hiền",
+      "createdDate": "2023-02-28"
+    },
+    {
+      "id": 19,
+      "name": "IT help desk",
+      "member": 8,
+      "creator": "Nguyễn Văn Hưởng",
+      "createdDate": "2023-02-28"
+    },
+    {
+      "id": 20,
+      "name": "International Payment",
+      "member": 10,
+      "creator": "Phạm Tuấn Đạt",
+      "createdDate": "2023-03-20"
+    },
+    {
+      "id": 21,
+      "name": "Financial",
+      "member": 6,
+      "creator": "Nguyễn Văn Hưởng",
+      "createdDate": "2023-03-21"
+    },
+    {
+      "id": 22,
+      "name": "International Relations",
+      "member": 6,
+      "creator": "Nguyễn Thị Mỵ",
+      "createdDate": "2023-03-25"
+    },
+    {
+      "id": 23,
+      "name": "Local Payment",
+      "member": 5,
+      "creator": "Nguyễn Thế Hưng",
+      "createdDate": "2023-04-25"
+    },
+    {
+      "id": 24,
+      "name": "Pulic Relations",
+      "member": 5,
+      "creator": "Lê Thị Na",
+      "createdDate": "2023-03-27"
+    },
+    {
+      "name": "new name",
+      "member": 10,
+      "creator": "Nguyễn Ngọc Duy",
+      "createdDate": "2019-10-01",
+      "id": 26
+    },
+    {
+      "name": "new name",
+      "member": 10,
+      "creator": "Nguyễn Ngọc Duy",
+      "createdDate": "2019-10-01",
+      "id": 27
+    },
+    {
+      "name": "new name",
+      "member": 10,
+      "creator": "Nguyễn Ngọc Duy",
+      "createdDate": "2019-10-01",
+      "id": 28
+    },
+    {
+      "name": "new name",
+      "member": 10,
+      "creator": "Nguyễn Ngọc Duy",
+      "createdDate": "2019-10-01",
+      "id": 29
+    }
+  ]
+}

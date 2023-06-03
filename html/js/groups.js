@@ -69,7 +69,6 @@ function changePage(newPage, totalPages) {
     if (newPage == currentPage || newPage < 1 || newPage > totalPages) {
         return;
     }
-
     currentPage = newPage;
     getGroupsDataForTable(); // reload table
 }
