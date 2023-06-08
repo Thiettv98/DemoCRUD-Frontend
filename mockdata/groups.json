@@ -162,39 +162,39 @@
       "createdDate": "2023-04-25"
     },
     {
-      "id": 24,
       "name": "Pulic Relations",
-      "member": 5,
+      "member": "5",
       "creator": "Lê Thị Na",
-      "createdDate": "2023-03-27"
+      "createdDate": "2023-03-27",
+      "id": 24
     },
     {
-      "name": "new name",
-      "member": 10,
-      "creator": "Nguyễn Ngọc Duy",
-      "createdDate": "2019-10-01",
-      "id": 26
-    },
-    {
-      "name": "new name",
-      "member": 10,
-      "creator": "Nguyễn Ngọc Duy",
-      "createdDate": "2019-10-01",
-      "id": 27
-    },
-    {
-      "name": "new name",
-      "member": 10,
-      "creator": "Nguyễn Ngọc Duy",
-      "createdDate": "2019-10-01",
-      "id": 28
-    },
-    {
-      "name": "new name",
-      "member": 10,
-      "creator": "Nguyễn Ngọc Duy",
-      "createdDate": "2019-10-01",
-      "id": 29
+      "name": "PHP Fresher123",
+      "member": "1",
+      "creator": "Trần Văn Thiết",
+      "createdDate": "2023-06-08",
+      "id": 34
     }
+  ],
+  "creators": [
+    "Trần Văn Thiết",
+    "Nguyễn Thị Giang",
+    "Vũ Đình Hào",
+    "Trần Phú Dao",
+    "Nguyễn Ngọc Duy",
+    "Nguyễn Thị Mỹ Nhung",
+    "Tống Thị Nhung",
+    "Mai Chiến Thắng",
+    "Đinh Thu Thảo",
+    "Nguyễn Thị Linh",
+    "Trần Văn Đạt",
+    "Nguyễn Xuân Tùng",
+    "Văn Thị Linh",
+    "Trịnh Thị Thu Hiền",
+    "Nguyễn Văn Hưởng",
+    "Phạm Tuấn Đạt",
+    "Nguyễn Thị Mỵ",
+    "Nguyễn Thế Hưng",
+    "Lê Thị Na"
   ]
 }
