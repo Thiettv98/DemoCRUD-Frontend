@@ -18,6 +18,8 @@ function resetAddGroupForm() {
     // hide created date field
     $("#created-date-field").addClass("d-none");
 
+    
+
     // reset input
     $("#group-name-input").val("");
     $("#member-input").val("");

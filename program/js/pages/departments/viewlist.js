@@ -1,17 +1,5 @@
-let currentPage = 1;
-let limit = 10;
-
-let currentSearch = "";
-
-let currentMinDateFilter = "";
-let currentMaxDateFilter = "";
-let currentMinMemberFilter = "";
-let currentMaxMemberFilter = "";
-
-let currentFieldSort = "id";
-let isSortASC = false;
-function getGroupsDataForTable() {
-    groupAPI.getAll({
+function getDepartmentsDataForTable() {
+    departmentAPI.getAll({
         currentPage,
         limit,
         currentSearch,
@@ -23,87 +11,88 @@ function getGroupsDataForTable() {
         isSortASC,
         success: function (data, textStatus, response) {
             let totalItems = response.getResponseHeader('x-total-count');
-            fillListGroupToTable(data);
-            fillPaginationToGroupTable(totalItems)
+            fillListDepartmentToTable(data);
+            fillPaginationToTable(totalItems)
         }
     });
 }
-function fillListGroupToTable(groups) {
+function fillListDepartmentToTable(departments) {
     let rows = "";
 
-    for (const group of groups) {
+    for (const department of departments) {
         let row = `<tr>
                         <td class="text-center"><input type="checkbox"></td>
-                        <td>${group.name}</td>
-                        <td>${group.member}</td>
-                        <td>${group.creator}</td>
-                        <td class="d-none d-md-table-cell">${group.createdDate}</td>
+                        <td>${department.name}</td>
+                        <td>${department.manager}</td>
+                        <td>${department.member}</td>
+                        <td>${department.creator}</td>
+                        <td class="d-none d-md-table-cell">${department.createdDate}</td>
                         <td class="table-action text-center">
-                        <a href="#" class="mr-2" onclick="openUpdateGroupModal(${group.id})">
+                        <a href="#" class="mr-2" onclick="openUpdateDepartmentModal(${department.id})">
                         <i class="align-middle" data-feather="edit-2"></i>
                     </a>
-                    <a href="#" onclick="openDeleteGroupModal(${group.id}, '${group.name}')">
+                    <a href="#" onclick="openDeleteDepartmentModal(${department.id}, '${department.name}')">
                         <i class="align-middle" data-feather="trash"></i>
                     </a>
                 </td>
                    </tr>`;
         rows += row;
     }
-    $('#group-table-body').empty();
-    $('#group-table-body').append(rows);
+    $('#department-table-body').empty();
+    $('#department-table-body').append(rows);
     feather.replace();
 }
 
-function fillPaginationToGroupTable(totalItems) {
+function fillPaginationToTable(totalItems) {
     let totalPages = Math.ceil(totalItems / limit);
 
     let rows = "";
 
     // previous
-    rows += `<li class="page-item ${currentPage == 1 ? "disabled" : ""}" onclick="changeGroupPage(${currentPage - 1}, ${totalPages})">
+    rows += `<li class="page-item ${currentPage == 1 ? "disabled" : ""}" onclick="changePage(${currentPage - 1}, ${totalPages})">
                 <a class="page-link" href="#">Previous</a>
             </li>`;
 
     for (let i = 1; i <= totalPages; i++) {
-        let row = `<li class="page-item ${currentPage == i ? "active" : ""}" onclick="changeGroupPage(${i}, ${totalPages})">
+        let row = `<li class="page-item ${currentPage == i ? "active" : ""}" onclick="changePage(${i}, ${totalPages})">
                         <a class="page-link" href="#">${i}</a>
                     </li>`;
         rows += row;
     }
 
-    rows += `<li class="page-item ${currentPage == totalPages ? "disabled" : ""}" onclick="changeGroupPage(${currentPage + 1}, ${totalPages})">
+    rows += `<li class="page-item ${currentPage == totalPages ? "disabled" : ""}" onclick="changePage(${currentPage + 1}, ${totalPages})">
                 <a class="page-link" href="#">Next</a>
             </li>`;
 
 
-    $('#group-pagination').empty();
-    $('#group-pagination').append(rows);
+    $('#department-pagination').empty();
+    $('#department-pagination').append(rows);
 }
 
-function changeGroupPage(newPage, totalPages) {
+function changePage(newPage, totalPages) {
     if (newPage == currentPage || newPage < 1 || newPage > totalPages) {
         return;
     }
     currentPage = newPage;
-    getGroupsDataForTable(); // reload table
+    getDepartmentsDataForTable(); // reload table
 };
 function changeSearch() {
-    let inputSearch = $("#group-search").val();
+    let inputSearch = $("#department-search").val();
     if (inputSearch != currentSearch) {
         currentSearch = inputSearch;
         resetPaging();
-        getGroupsDataForTable(); // reload table
+        getDepartmentsDataForTable(); // reload table
     }
 }
 
-let isShowGroupFilter = false;
+let isShowDepartmentFilter = false;
 function toggleFilterForm() {
-    if (!isShowGroupFilter) {
+    if (!isShowDepartmentFilter) {
         $("#filter-form").removeClass("d-none");
-        isShowGroupFilter = true;
+        isShowDepartmentFilter = true;
     } else {
         $("#filter-form").addClass("d-none");
-        isShowGroupFilter = false;
+        isShowDepartmentFilter = false;
     }
 }
 
@@ -169,7 +158,7 @@ function changeFilter() {
         currentMaxMemberFilter = inputMaxMember;
 
         resetPaging();
-        getGroupsDataForTable(); // reload table
+        getDepartmentsDataForTable(); // reload table
     }
 }
 function showErrorMessage(idInput, idLabel, errorMessage) {
@@ -182,7 +171,7 @@ function hideErrorMessage(idInput) {
     $(`#${idInput}`).removeClass("is-invalid");
 };
 
-function changeSort(field) {
+function changeSortDepartment(field) {
     if (field == currentFieldSort) {
         isSortASC = !isSortASC;
     } else {
@@ -192,7 +181,10 @@ function changeSort(field) {
     //binding UI
     switch (currentFieldSort) {
         case 'name':
-            showSortIcon('group-name-sort-icon');
+            showSortIcon('department-name-sort-icon');
+            break;
+        case 'manager':
+            showSortIcon('manager-sort-icon');
             break;
         case 'member':
             showSortIcon('member-sort-icon');
@@ -207,63 +199,64 @@ function changeSort(field) {
             break;
     }
     resetPaging();
-    getGroupsDataForTable();//reload table
+    getDepartmentsDataForTable();//reload table
 }
 
-function showSortIcon(idSortIcon) {
+function showSortIconDepartment(idSortIcon) {
     hideAllSortIcon();
     $(`#${idSortIcon}`).removeClass("d-none");
     //set icon
     $(`#${idSortIcon}`).empty();
-        $(`#${idSortIcon}`).prepend(`<i data-feather="${isSortASC ? "chevron-up":"chevron-down"}"></i>`)
-        feather.replace();
+    $(`#${idSortIcon}`).prepend(`<i data-feather="${isSortASC ? "chevron-up" : "chevron-down"}"></i>`)
+    feather.replace();
 };
-function hideSortIcon(idSortIcon) {
+function hideSortIconDepartment(idSortIcon) {
     $(`#${idSortIcon}`).addClass("d-none");
 }
 function hideAllSortIcon() {
-    hideSortIcon('group-name-sort-icon');
-    hideSortIcon('member-sort-icon');
-    hideSortIcon('creator-sort-icon');
-    hideSortIcon('created-date-sort-icon');
+    hideSortIconDepartment('department-name-sort-icon');
+    hideSortIconDepartment('manager-sort-icon');
+    hideSortIconDepartment('member-sort-icon');
+    hideSortIconDepartment('creator-sort-icon');
+    hideSortIconDepartment('created-date-sort-icon');
 }
-function refreshTable(){
+function refreshTable() {
     resetPaging();
     resetSearch();
     resetFilter();
     resetSort();
 
-    getGroupsDataForTable();//reload table
+    getDepartmentsDataForTable();//reload table
 }
 
-function resetPaging(){
+function resetPaging() {
     currentPage = 1;
 }
 
-function resetSearch(){
+function resetSearch() {
     currentSearch = "";
-$("#group-search").val("");
+    $("#department-search").val("");
 }
 
-function resetFilter(){
-currentMinDateFilter = "";
-currentMaxDateFilter = "";
-currentMinMemberFilter = "";
-currentMaxMemberFilter = "";
+function resetFilter() {
+    currentMinDateFilter = "";
+    currentMaxDateFilter = "";
+    currentMinMemberFilter = "";
+    currentMaxMemberFilter = "";
 
-$("#min-date-input").val("");
-$("#max-date-input").val("");
-$("#min-member-input").val("");
-$("#max-member-input").val("");
+    $("#min-date-input").val("");
+    $("#max-date-input").val("");
+    $("#min-member-input").val("");
+    $("#max-member-input").val("");
 
-hideErrorMessage('min-date-input');
-hideErrorMessage('max-date-input');
-hideErrorMessage('min-member-input');
-hideErrorMessage('max-member-input');
+    hideErrorMessage('min-date-input');
+    hideErrorMessage('max-date-input');
+    hideErrorMessage('min-member-input');
+    hideErrorMessage('max-member-input');
 }
-function resetSort(){
-currentFieldSort ="";
-isSortASC = "";
+function resetSort() {
+    currentFieldSort = "";
+    isSortASC = "";
 
-hideAllSortIcon();
+    hideAllSortIcon();
 }

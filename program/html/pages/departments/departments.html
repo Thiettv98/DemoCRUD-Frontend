@@ -1,6 +1,6 @@
 <div class="container-fluid p-0">
 
-    <h1 class="h3 mb-3">Account List</h1>
+    <h1 class="h3 mb-3">Department List</h1>
 
     <div class="row">
         <div class="col-12">
@@ -10,8 +10,8 @@
                     <div class="d-flex mb-2 align-items-center">
                         <div class="mr-auto input-group" style="flex-basis: 250px;"><input type="text"
                                 class="form-control" placeholder="Search..." onchange="changeSearch()"
-                                id="account-search">
-                            <span class="input-account-append">
+                                id="department-search">
+                            <span class="input-department-append">
                                 <button class="btn btn-secondary" type="button" onclick="changeSearch()">Search</button>
                             </span>
                         </div>
@@ -22,11 +22,15 @@
                         </div>
                         <div onclick="refreshTable()">
                             <i class="align-middle mr-2" data-feather="refresh-ccw" data-toggle="tooltip"
-                                data-placement="top" title="Refresh account button"></i>
+                                data-placement="top" title="Refresh department button"></i>
+                        </div>
+                        <div onclick="openAddDepartmentModal()">
+                            <i class="align-middle mr-2" data-feather="plus-circle" data-toggle="tooltip"
+                                data-placement="top" title="Add department button"></i>
                         </div>
                         <div>
                             <i class="align-middle" data-feather="trash" data-toggle="tooltip" data-placement="top"
-                                title="Delete account button"></i>
+                                title="Delete department button"></i>
                         </div>
                     </div>
                     <!-- filset  d-none-->
@@ -65,17 +69,19 @@
                             <!-- filter member -->
                             <div class="row col-md-5 col-sm-12 align-items-center">
                                 <!-- min-member -->
-                                <div class="col-3"><select id="role-input" class="form-control" name="validation-role" placeholder="Role.">
-                                </select>
+                                <div class="col-6"><input id="min-member-input" type="number" class="form-control"
+                                        placeholder="Min of member">
+                                    <label id="validation-min-member-error" class="small invalid-feedback">Min
+                                        Member must be
+                                        greater than or equal 0</label>
                                 </div>
                                 <!-- max-member -->
-                                <div class="col-5">
-                                    <select id="department-input" class="form-control" name="validation-department" placeholder="Department">
-                                    </select>
-                                </div>
-                                <div class="col-4">
-                                    <select id="status-input" class="form-control" name="validation-status" placeholder="Status">
-                                    </select>
+                                <div class="col-6">
+                                    <input id="max-member-input" type="number" class="form-control"
+                                        placeholder="Max of member">
+                                    <label id="validation-max-member-error" class="small invalid-feedback">Max
+                                        Member must be
+                                        greater than or equal 0</label>
                                 </div>
                             </div>
                             <div class="row col-md-2 col-sm-12 ml-1">
@@ -91,46 +97,42 @@
                     <table class="table table-striped table-hover table-bordered">
                         <thead>
                             <tr>
-                                <th style="width: 5%;" class="text-center"></th>
-                                <th style="width: 15%;" onclick="changeSortAccount('username')">
-                                    Username
-                                    <span id="username-sort-icon" class="d-none"><i
+                                <th style="width: 8%;" class="text-center"><input type="checkbox"></th>
+                                <th style="width: 20%;" onclick="changeSortDepartment('name')">
+                                    Department Name
+                                    <span id="department-name-sort-icon" class="d-none"><i
                                             data-feather="chevron-up"></i></span>
                                 </th>
-                                <th style="width: 20%;" onclick="changeSortAccount('fullname')">
-                                    Full Name
-                                    <span id="fullname-sort-icon" class="d-none"><i data-feather="chevron-up"></i></span>
+                                <th style="width: 20%;" onclick="changeSortDepartment('manager')">
+                                    Manager
+                                    <span id="manager-sort-icon" class="d-none"><i data-feather="chevron-up"></i></span>
                                 </th>
-                                <th style="width:10%;" onclick="changeSortAccount('role')">
-                                    Role
+                                <th style="width:10%;" onclick="changeSortDepartment('member')">
+                                    Member
                                     <span id="member-sort-icon" class="d-none"><i data-feather="chevron-up"></i></span>
                                 </th>
-                                <th style="width: 20%;" onclick="changeSortAccount('department')">
-                                    Department
+                                <th style="width: 20%;" onclick="changeSortDepartment('creator')">
+                                    Creator
                                     <span id="creator-sort-icon" class="d-none"><i data-feather="chevron-up"></i></span>
                                 </th>
-                                <th style="width: 10%;" onclick="changeSortAccount('status')">
-                                    Status
-                                    <span id="status-sort-icon" class="d-none"><i data-feather="chevron-up"></i></span>
-                                </th>
-                                <th class="d-none d-md-table-cell" style="width: 13%;"
-                                    onclick="changeSortAccount('createdDate')">
+                                <th class="d-none d-md-table-cell" style="width: 14%;"
+                                    onclick="changeSortDepartment('createdDate')">
                                     Created Date
                                     <span id="created-date-sort-icon" class="d-none"><i
                                             data-feather="chevron-up"></i></span>
                                 </th>
-                                <th style="width:7%" class="text-center">
+                                <th style="width:8%" class="text-center">
                                     Actions
                                 </th>
                             </tr>
                         </thead>
-                        <tbody id="account-table-body">
+                        <tbody id="department-table-body">
                         </tbody>
                     </table>
                     <!-- Pagination -->
                     <div class="d-flex justify-content-end">
                         <nav aria-label="...">
-                            <ul class="pagination" id="account-pagination">
+                            <ul class="pagination" id="department-pagination">
                             </ul>
                         </nav>
                     </div>
@@ -138,13 +140,13 @@
             </div>
         </div>
     </div>
-    <!-- BEGIN insert/update account modal -->
-    <div class="modal fade" id="account-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- BEGIN insert/update department modal -->
+    <div class="modal fade" id="department-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <form id="account-form">
+                <form id="department-form">
                     <div class="modal-header">
-                        <h5 id="account-modal-title" class="modal-title">Add Account Modal</h5>
+                        <h5 id="department-modal-title" class="modal-title">Add Department Modal</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -152,9 +154,9 @@
                     <div class="modal-body m-3">
 
                         <div class="form-group">
-                            <label class="form-label">Account Name</label>
-                            <input id="account-name-input" type="text" class="form-control"
-                                name="validation-account-name" placeholder="Enter account name">
+                            <label class="form-label">Department Name</label>
+                            <input id="department-name-input" type="text" class="form-control"
+                                name="validation-department-name" placeholder="Enter department name">
                         </div>
 
                         <div class="form-group">
@@ -184,8 +186,8 @@
 
                     </div>
                     <div class="modal-footer d-flex">
-                        <button type="button" class="btn btn-primary mr-auto" id="btn-add-account-into-account"
-                            onclick="openAddAccountToAccountModal()">Add Accounts</button>
+                        <button type="button" class="btn btn-primary mr-auto" id="btn-add-account-into-department"
+                            onclick="openAddAccountToDepartmentModal()">Add Accounts</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </div>
@@ -193,38 +195,38 @@
             </form>
         </div>
     </div>
-    <!-- END insert/update account modal -->
+    <!-- END insert/update department modal -->
     <!-- BEGIN delete modal -->
-    <div class="modal fade" id="delete-account-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="delete-department-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h5 class="modal-title" id="account-modal-title">Delete Account Modal</h5>
-                    <button id="close-button-account-modal" type="button" class="close" data-dismiss="modal"
+                    <h5 class="modal-title" id="department-modal-title">Delete Department Modal</h5>
+                    <button id="close-button-department-modal" type="button" class="close" data-dismiss="modal"
                         aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body m-3">
-                    <p>Do you wanna delete <b id="delete-account-name" style="color: red">Java Fresher</b>
-                        account?</p>
+                    <p>Do you wanna delete <b id="delete-department-name" style="color: red">Java Fresher</b>
+                        department?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                    <button onclick="deleteAccountFromServer()" type="button" class="btn btn-primary">Delete</button>
+                    <button onclick="deleteDepartmentFromServer()" type="button" class="btn btn-primary">Delete</button>
                 </div>
             </div>
         </div>
     </div>
     <!-- END delete modal -->
     <!-- BEGIN primary modal -->
-    <div class="modal fade" id="account-into-account-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="account-into-department-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
-                <form id="account-form">
+                <form id="department-form">
                     <div class="modal-header">
-                        <h5 id="account-modal-title" class="modal-title">Add accounts into account</h5>
+                        <h5 id="department-modal-title" class="modal-title">Add accounts into department</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -232,8 +234,8 @@
                     <div class="mb-2 align-items-center">
                         <div class="modal-body m-3 d-flex" style="flex-basis:250px;">
                             <div class="input-group"><input type="text" class="form-control" placeholder="Search..."
-                                    onchange="changeSearch()" id="account-search">
-                                <span class="input-account-append">
+                                    onchange="changeSearch()" id="department-search">
+                                <span class="input-department-append">
                                     <button class="btn btn-secondary" type="button"
                                         onclick="changeSearch()">Search</button>
                                 </span>
@@ -247,7 +249,7 @@
                                     <th style="width: 10%;" class="text-center"><input type="checkbox"></th>
                                     <th style="width: 30%;" onclick="changeSort('username')">
                                         Username
-                                        <span id="account-name-sort-icon" class="d-none"><i
+                                        <span id="department-name-sort-icon" class="d-none"><i
                                                 data-feather="chevron-up"></i></span>
                                     </th>
                                     <th style="width: 30%;" onclick="changeSort('fullname')">
@@ -262,7 +264,7 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody id="account-table-body">
+                            <tbody id="department-table-body">
                             </tbody>
                         </table>    
                     </div>

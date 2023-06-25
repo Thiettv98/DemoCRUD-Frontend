@@ -20,7 +20,7 @@ function resetUpdateGroupForm() {
     // set title for modal
     $("#group-modal-title").text("Update Group Modal");
 
-    // show created date field
+    // hide created date field
     $("#created-date-field").removeClass("d-none");
 
     // reset input value

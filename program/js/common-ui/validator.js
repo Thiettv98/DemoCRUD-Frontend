@@ -1,6 +1,8 @@
 let loginFormValidator;
 let addGroupFormValidator;
 let updateGroupFormValidator;
+let addDepartmentFormValidator;
+let updateDepartmentFormValidator;
 
 function initBaseValidator({ formValidator, rules, messages, submitHandler }) {
     return formValidator.validate({
@@ -101,9 +103,50 @@ function initAddGroupFormValidator({ submitHandler }) {
         submitHandler
     });
 }
-
 function resetAddGroupValidator() {
     resetVaildator(addGroupFormValidator);
+}
+function initAddDepartmentFormValidator({ submitHandler }) {
+    addDepartmentFormValidator = $("#department-form");
+    addDepartmentFormValidator = initBaseValidator({
+        formValidator: addDepartmentFormValidator,
+        rules: {
+            "validation-department-name": {
+                required: true,
+                minlength: 6,
+                maxlength: 20,
+                remote: {
+                    url: departmentBaseUrl,
+                    type: "GET",
+                    data: {
+                        name: function () {
+                            return $("#department-name-input").val();
+                        }
+                    },
+                    dataFilter: function (data) {
+                        var departments = JSON.parse(data);
+                        return departments.length == 0;
+                    }
+                }
+            },
+            "validation-manager": {
+                required: true
+            }
+        },
+        messages: {
+            "validation-department-name": {
+                required: "Enter a name",
+                minlength: jQuery.validator.format("Enter at least {0} characters"),
+                maxlength: jQuery.validator.format("Enter max {0} characters"),
+                remote: jQuery.validator.format("{0} is already in use")
+            }
+        },
+        submitHandler
+    });
+}
+
+function resetAddDepartmentValidator() {
+    resetVaildator(addDepartmentFormValidator);
 }
 
 function initUpdateGroupFormValidator({ submitHandler }) {
@@ -154,4 +197,48 @@ function initUpdateGroupFormValidator({ submitHandler }) {
 
 function resetUpdateGroupValidator() {
     resetVaildator(updateGroupFormValidator);
+}
+function initUpdateDepartmentFormValidator({ submitHandler }) {
+    updateDepartmentFormValidator = $("#department-form");
+    updateDepartmentFormValidator = initBaseValidator({
+        formValidator: updateDepartmentFormValidator,
+        rules: {
+            "validation-department-name": {
+                required: true,
+                minlength: 6,
+                maxlength: 20,
+                remote: {
+                    url: departmentBaseUrl,
+                    type: "GET",
+                    data: {
+                        name: function () {
+                            return $("#department-name-input").val();
+                        }
+                    },
+                    dataFilter: function (data) {
+                        var departments = JSON.parse(data);
+                        if (oldDepartmentName == $("#department-name-input").val()) {
+                            return true;
+                        }
+                        return departments.length == 0;
+                    }
+                }
+            },
+            "validation-manager": {
+                required: true
+            }
+        },
+        messages: {
+            "validation-department-name": {
+                required: "Enter a name",
+                minlength: jQuery.validator.format("Enter at least {0} characters"),
+                maxlength: jQuery.validator.format("Enter max {0} characters"),
+                remote: jQuery.validator.format("{0} is already in use")
+            }
+        },
+        submitHandler
+    });
+}
+function resetUpdateDepartmentValidator() {
+    resetVaildator(updateDepartmentFormValidator);
 }

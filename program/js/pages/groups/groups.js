@@ -2,6 +2,7 @@ function loadGroupPage() {
     $("#content").load("../pages/groups/groups.html", function () {
         feather.replace();
         settingCommonForGroupPage();
+        refreshTable();
         getGroupsDataForTable();
     });
 }

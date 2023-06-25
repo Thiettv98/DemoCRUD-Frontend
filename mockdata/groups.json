@@ -176,7 +176,222 @@
       "id": 25
     }
   ],
+  "departments": [
+    {
+      "name": "Java Fresher",
+      "manager": "Trần Phú Dao",
+      "member": "1",
+      "creator": "Nguyễn Ngọc Duy",
+      "createdDate": "2019-10-01",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "name": "PHP Fresher",
+      "manager": "Trần Văn Thiết",
+      "member": 3,
+      "creator": "Nguyễn Thị Giang",
+      "createdDate": "2020-11-02"
+    },
+    {
+      "name": "C# Fresher",
+      "manager": "Nguyễn Ngọc Duy",
+      "member": "5",
+      "creator": "Vũ Đình Hào",
+      "createdDate": "2016-04-09",
+      "id": 3
+    },
+    {
+      "name": ".NET Fresher",
+      "manager": "Nguyễn Thị Mỹ Nhung",
+      "member": "7",
+      "creator": "Trần Phú Dao",
+      "createdDate": "2017-05-09",
+      "id": 4
+    },
+    {
+      "id": 5,
+      "name": "Marketing",
+      "manager": "Trần Văn Thiết",
+      "member": 8,
+      "creator": "Nguyễn Ngọc Duy",
+      "createdDate": "2015-11-09"
+    },
+    {
+      "id": 6,
+      "name": "Sale",
+      "manager": "Trần Văn Thiết",
+      "member": 15,
+      "creator": "Nguyễn Ngọc Duy",
+      "createdDate": "2020-11-11"
+    },
+    {
+      "id": 7,
+      "name": "Sercurity",
+      "manager": "Trần Văn Thiết",
+      "member": 17,
+      "creator": "Nguyễn Ngọc Duy",
+      "createdDate": "2023-01-22"
+    },
+    {
+      "id": 8,
+      "name": "Technical",
+      "manager": "Trần Văn Thiết",
+      "member": 20,
+      "creator": "Vũ Đình Hào",
+      "createdDate": "2015-05-21"
+    },
+    {
+      "id": 9,
+      "name": "Accounting",
+      "manager": "Trần Văn Thiết",
+      "member": 23,
+      "creator": "Nguyễn Thị Mỹ Nhung",
+      "createdDate": "2023-02-17"
+    },
+    {
+      "id": 10,
+      "name": "Director",
+      "manager": "Trần Văn Thiết",
+      "member": 25,
+      "creator": "Tống Thị Nhung",
+      "createdDate": "2022-07-07"
+    },
+    {
+      "id": 11,
+      "name": "Audit",
+      "manager": "Trần Văn Thiết",
+      "member": 4,
+      "creator": "Mai Chiến Thắng",
+      "createdDate": "2021-04-12"
+    },
+    {
+      "id": 12,
+      "name": "Purchasing",
+      "manager": "Trần Văn Thiết",
+      "member": 3,
+      "creator": "Đinh Thu Thảo",
+      "createdDate": "2022-06-25"
+    },
+    {
+      "id": 2,
+      "name": "Training",
+      "manager": "Trần Văn Thiết",
+      "member": 3,
+      "creator": "Nguyễn Thị Linh",
+      "createdDate": "2023-02-17"
+    },
+    {
+      "id": 14,
+      "name": "Administration",
+      "manager": "Trần Văn Thiết",
+      "member": 0,
+      "creator": "Trần Văn Đạt",
+      "createdDate": "2023-02-17"
+    },
+    {
+      "id": 15,
+      "name": "HR",
+      "manager": "Trần Văn Thiết",
+      "member": 0,
+      "creator": "Trần Văn Đạt",
+      "createdDate": "2023-02-19"
+    },
+    {
+      "id": 16,
+      "name": "Customer Service",
+      "manager": "Trần Văn Thiết",
+      "member": 10,
+      "creator": "Nguyễn Xuân Tùng",
+      "createdDate": "2023-02-20"
+    },
+    {
+      "id": 17,
+      "name": "Vice director",
+      "manager": "Trần Văn Thiết",
+      "member": 8,
+      "creator": "Văn Thị Linh",
+      "createdDate": "2023-02-25"
+    },
+    {
+      "id": 18,
+      "name": "IT",
+      "manager": "Trần Văn Thiết",
+      "member": 7,
+      "creator": "Trịnh Thị Thu Hiền",
+      "createdDate": "2023-02-28"
+    },
+    {
+      "id": 19,
+      "name": "IT help desk",
+      "manager": "Trần Văn Thiết",
+      "member": 8,
+      "creator": "Nguyễn Văn Hưởng",
+      "createdDate": "2023-02-28"
+    },
+    {
+      "id": 21,
+      "name": "Financial",
+      "manager": "Trần Văn Thiết",
+      "member": 6,
+      "creator": "Nguyễn Văn Hưởng",
+      "createdDate": "2023-03-21"
+    },
+    {
+      "id": 22,
+      "name": "International Relations",
+      "manager": "Trần Văn Thiết",
+      "member": 6,
+      "creator": "Nguyễn Thị Mỵ",
+      "createdDate": "2023-03-25"
+    },
+    {
+      "name": "Local Payment",
+      "manager": "Nguyễn Ngọc Duy",
+      "member": "5",
+      "creator": "Nguyễn Thế Hưng",
+      "createdDate": "2023-04-25",
+      "id": 23
+    },
+    {
+      "name": "JAVA Fresher",
+      "manager": "Vũ Đình Hào",
+      "member": "10",
+      "creator": "Trần Văn Thiết",
+      "createdDate": "2023-06-11",
+      "id": 25
+    },
+    {
+      "name": "Java Fresher123",
+      "manager": "Trần Văn Thiết",
+      "member": 1,
+      "creator": "Nguyễn Ngọc Duy",
+      "createdDate": "2023-06-19",
+      "id": 28
+    }
+  ],
   "creators": [
+    "Trần Văn Thiết",
+    "Nguyễn Thị Giang",
+    "Vũ Đình Hào",
+    "Trần Phú Dao",
+    "Nguyễn Ngọc Duy",
+    "Nguyễn Thị Mỹ Nhung",
+    "Tống Thị Nhung",
+    "Mai Chiến Thắng",
+    "Đinh Thu Thảo",
+    "Nguyễn Thị Linh",
+    "Trần Văn Đạt",
+    "Nguyễn Xuân Tùng",
+    "Văn Thị Linh",
+    "Trịnh Thị Thu Hiền",
+    "Nguyễn Văn Hưởng",
+    "Phạm Tuấn Đạt",
+    "Nguyễn Thị Mỵ",
+    "Nguyễn Thế Hưng",
+    "Lê Thị Na"
+  ],
+  "managers": [
     "Trần Văn Thiết",
     "Nguyễn Thị Giang",
     "Vũ Đình Hào",
